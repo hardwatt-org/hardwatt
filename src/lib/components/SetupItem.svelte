@@ -22,13 +22,13 @@
             collapse grid grid-cols-subgrid col-span-8 text-xs md:text-sm"
 >
     <div
-            class="collapse-title grid grid-cols-subgrid col-span-8 p-0 min-h-8 h-10 items-center"
+            class="collapse-title grid grid-cols-subgrid col-span-8 p-0 min-h-8 h-10 items-center ml-2"
     >
-        <div class="ml-2">{idle}</div>
+        <div class="">{idle}</div>
         <div>{load}</div>
-        <div class="hidden xl:block">{cstate}</div>
+        <div class="hidden md:block">{cstate}</div>
         <div>{cpu}</div>
-        <div class="hidden xl:block">{mainboard}</div>
+        <div class="hidden md:block">{mainboard}</div>
         <div class="hidden xl:block">{psu}</div>
         <div class="hidden 2xl:block">{os}</div>
     </div>
