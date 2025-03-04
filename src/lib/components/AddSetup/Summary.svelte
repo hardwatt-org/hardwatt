@@ -1,9 +1,41 @@
 <script>
+    import PocketBase from 'pocketbase';
     import Close from "$lib/components/Icons/Close.svelte";
     import {input} from "$lib/components/AddSetup/state.svelte.js";
     import SummaryBlock from "$lib/components/AddSetup/SummaryBlock.svelte";
 
     let infoText = "Setup Summary";
+
+    let formElement;
+    let submitPromise= $state(null);
+
+    const submitSetup = (event) => {
+        event.preventDefault();
+        const pb = new PocketBase('https://pb.cacaoglass.duckdns.org');
+
+        // i dont like js
+        const data = {
+            idle: input.idle.value,
+            load: input.load.value,
+            measuringdevice: input.measuringDevice.value,
+            cstate: input.cState.value,
+            mainboard: input.motherboard.value,
+            cpu: input.cpu.value,
+            cpucooler: input.cpuCooler.value,
+            gpu: input.gpu.value,
+            ram: input.ram.value,
+            bootdrive: input.bootDrive.value,
+            psu: input.psu.value,
+            poweradapter: input.powerAdapter.value,
+            os: input.os.value,
+            mouse: input.mouse.value,
+            keyboard: input.keyboard.value,
+            monitor: input.monitor.value,
+            status: "pending",
+        };
+
+        submitPromise = pb.collection('setups').create(data);
+    };
 </script>
 
 <dialog id="AddSummary" class="modal">
@@ -21,11 +53,24 @@
             </div>
         </div>
         <div class="modal-action">
-            <form method="dialog">
+            <form method="dialog" bind:this={formElement}>
                 <button class="absolute right-5 top-5">
                     <Close/>
                 </button>
-                <button class="btn btn-primary absolute right-5 bottom-5">Submit
+                <button class="btn btn-primary absolute right-5 bottom-5"
+                    onclick={submitSetup}
+                >
+                    {#if submitPromise === null}
+                        Submit
+                    {:else}
+                        {#await submitPromise}
+                            <span class="loading loading-spinner loading-md"></span>
+                        {:then res } 
+                            {formElement.submit()}
+                        {:catch err}
+                            :(
+                        {/await}
+                    {/if}
                 </button>
                 <button class="btn btn-primary absolute left-5 bottom-5"
                         onclick={()=>document.getElementById('AddModal4').showModal()}>Back

@@ -14,6 +14,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.0.6
         version: 4.0.6(vite@6.1.0(jiti@2.4.2)(lightningcss@1.29.1))
+      pocketbase:
+        specifier: ^0.25.2
+        version: 0.25.2
       tailwindcss:
         specifier: ^4.0.6
         version: 4.0.6
@@ -617,6 +620,9 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
+  pocketbase@0.25.2:
+    resolution: {integrity: sha512-ONZl1+qHJMnhR2uacBlBJ90lm7njtL/zy0606+1ROfK9hSL4LRBRc8r89rMcNRzPzRqCNyoFTh2Qg/lYXdEC1w==}
+
   postcss-selector-parser@6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
     engines: {node: '>=4'}
@@ -1137,6 +1143,8 @@ snapshots:
   nanoid@3.3.8: {}
 
   picocolors@1.1.1: {}
+
+  pocketbase@0.25.2: {}
 
   postcss-selector-parser@6.0.10:
     dependencies:
