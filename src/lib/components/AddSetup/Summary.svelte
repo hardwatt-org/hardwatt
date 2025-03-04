@@ -3,6 +3,8 @@
     import Close from "$lib/components/Icons/Close.svelte";
     import SummaryBlock from "$lib/components/AddSetup/SummaryBlock.svelte";
 
+    import {input} from "$lib/components/AddSetup/state.svelte";
+
     let infoText = "Setup Summary";
 
     let formElement;
