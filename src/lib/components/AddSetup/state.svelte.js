@@ -29,7 +29,7 @@ export const input = $state({
         value: '',
         options: ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9'],
     },
-    motherboard: {
+    mainboard: {
         label: "Motherboard",
         value: '',
         type: 'text',
@@ -105,7 +105,7 @@ export const input = $state({
 
 export const parts = {
     measuringDevice: ["Fluke 117", "Keysight 34461A", "Tektronix DMM6500", "Extech EX330"],
-    motherboard: ["ASUS ROG Strix Z790-E", "MSI MPG Z790 Carbon", "Gigabyte Z790 AORUS Elite", "ASRock Z790 Steel Legend"],
+    mainboard: ["ASUS ROG Strix Z790-E", "MSI MPG Z790 Carbon", "Gigabyte Z790 AORUS Elite", "ASRock Z790 Steel Legend"],
     cpu: ["Intel Core i5-14600K", "Intel Core i7-14700K", "Intel Core i9-14900K", "AMD Ryzen 5 7600X", "AMD Ryzen 7 7700X", "AMD Ryzen 9 7900X", "AMD Ryzen 9 7950X"],
     cpuCooler: ["Noctua NH-D15", "Corsair iCUE H150i ELITE CAPELLIX", "be quiet! Dark Rock Pro 4", "ARCTIC Liquid Freezer II 280"],
     gpu: ["NVIDIA GeForce RTX 4060", "NVIDIA GeForce RTX 4070", "NVIDIA GeForce RTX 4080", "AMD Radeon RX 7600"],
