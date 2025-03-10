@@ -4,7 +4,7 @@
     let {
         idle,
         load,
-        cstate,
+        cState,
         cpu,
         mainboard,
         psu,
@@ -26,7 +26,7 @@
     >
         <div class="">{idle}</div>
         <div>{load}</div>
-        <div class="hidden md:block">{cstate}</div>
+        <div class="hidden md:block">{cState}</div>
         <div>{cpu}</div>
         <div class="hidden md:block">{mainboard}</div>
         <div class="hidden xl:block">{psu}</div>
