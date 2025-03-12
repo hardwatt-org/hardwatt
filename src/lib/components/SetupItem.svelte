@@ -6,7 +6,7 @@
         load,
         cState,
         cpu,
-        mainboard,
+        motherboard,
         psu,
         os,
         index,
@@ -28,7 +28,7 @@
         <div>{load}</div>
         <div class="hidden md:block">{cState}</div>
         <div>{cpu}</div>
-        <div class="hidden md:block">{mainboard}</div>
+        <div class="hidden md:block">{motherboard}</div>
         <div class="hidden xl:block">{psu}</div>
         <div class="hidden 2xl:block">{os}</div>
     </div>

@@ -3,7 +3,7 @@
 
     const fields = [
         { label: "idle power", key: "idle" },
-        { label: "Motherboard", key: "mainboard" },
+        { label: "Motherboard", key: "motherboard" },
         { label: "RAM", key: "ram" },
         { label: "OS", key: "os" },
         { label: "load power", key: "load" },

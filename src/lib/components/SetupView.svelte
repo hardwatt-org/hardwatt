@@ -29,7 +29,7 @@
                         load={setup.load}
                         cState={setup.cState}
                         cpu={setup.cpu}
-                        mainboard={setup.mainboard}
+                        motherboard={setup.motherboard}
                         psu={setup.psu}
                         os={setup.os}
                         index={index}

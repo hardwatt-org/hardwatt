@@ -11,7 +11,7 @@
         <div class="md:flex md:justify-evenly text-xs md:text-base md:gap-10">
             <div class="grid gap-5">
                 <SummaryBlock blockTitle="Power Consumption" setupParts={["idle","load","measuringDevice","cState"]}/>
-                <SummaryBlock blockTitle="Processors" setupParts={["mainboard","cpu","cpuCooler","gpu"]}/>
+                <SummaryBlock blockTitle="Processors" setupParts={["motherboard","cpu","cpuCooler","gpu"]}/>
             </div>
             <div class="divider divider-horizontal"></div>
             <div class="grid gap-5 md:mt-0 mt-5">

@@ -8,7 +8,7 @@
         infoText: '2/4: Processors',
         gridLayout: 'md:grid-cols-4',
         inputFields: [
-            {bindId: 'mainboard'},
+            {bindId: 'motherboard'},
             {bindId: 'cpu'},
             {bindId: 'cpuCooler'},
         ],
