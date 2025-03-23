@@ -3,20 +3,20 @@
 
     const fields = [
         { label: "idle power", key: "idle" },
-        { label: "Motherboard", key: "mainboard" },
+        { label: "Motherboard", key: "motherboard" },
         { label: "RAM", key: "ram" },
         { label: "OS", key: "os" },
         { label: "load power", key: "load" },
         { label: "CPU", key: "cpu" },
-        { label: "boot device", key: "bootdrive" },
+        { label: "boot device", key: "bootDrive" },
         { label: "mouse", key: "mouse" },
-        { label: "meas. device", key: "measuringdevice" },
-        { label: "CPU cooler", key: "cpucooler" },
+        { label: "meas. device", key: "measuringDevice" },
+        { label: "CPU cooler", key: "cpuCooler" },
         { label: "PSU", key: "psu" },
         { label: "keyboard", key: "keyboard" },
-        { label: "C-State", key: "cstate" },
+        { label: "C-State", key: "cState" },
         { label: "GPU", key: "gpu" },
-        { label: "power adapter", key: "poweradapter" },
+        { label: "power adapter", key: "powerAdapter" },
         { label: "monitor", key: "monitor" },
     ];
 

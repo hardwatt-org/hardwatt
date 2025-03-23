@@ -26,9 +26,9 @@
                 <SetupItem
                         idle={setup.idle}
                         load={setup.load}
-                        cstate={setup.cstate}
+                        cState={setup.cState}
                         cpu={setup.cpu}
-                        mainboard={setup.mainboard}
+                        motherboard={setup.motherboard}
                         psu={setup.psu}
                         os={setup.os}
                         index={index}
