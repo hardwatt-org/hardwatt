@@ -61,7 +61,7 @@
         {#if isLoggedIn === true}
             <button class="avatar" onclick={logout}>
               <div class="w-10 rounded-xl">
-                <img alt="user-avatar" src={pb.files.getURL(pb.authStore.record, pb.authStore.record.avatar)} />
+                <img alt="user-avatar" src={pb.files.getURL(pb.authStore.record, pb.authStore.record.avatar, {"thumb": "100x100"})} />
               </div>
             </button>
         {:else if isLoggedIn === false}
