@@ -14,28 +14,17 @@
         event.preventDefault();
         const pb = new PocketBase('https://pb.cacaoglass.duckdns.org');
 
-        // i dont like js
-        const data = {
-            idle: input.idle.value,
-            load: input.load.value,
-            measuringdevice: input.measuringDevice.value,
-            cstate: input.cState.value,
-            mainboard: input.motherboard.value,
-            cpu: input.cpu.value,
-            cpucooler: input.cpuCooler.value,
-            gpu: input.gpu.value,
-            ram: input.ram.value,
-            bootdrive: input.bootDrive.value,
-            psu: input.psu.value,
-            poweradapter: input.powerAdapter.value,
-            os: input.os.value,
-            mouse: input.mouse.value,
-            keyboard: input.keyboard.value,
-            monitor: input.monitor.value,
-            status: "pending",
-        };
+        // extract part key + its value into separate object
+        let submitData = {};
+        Object.entries(input).forEach(([k, v]) => {
+            submitData[k] = v.value;
+        });
 
-        submitPromise = pb.collection('setups').create(data);
+        // set additional stuff
+        submitData.status = "pending";
+
+
+        submitPromise = pb.collection('setups').create(submitData);
     };
 </script>
 
