@@ -23,6 +23,9 @@
         // set additional stuff
         submitData.status = "pending";
 
+        // TODO we should tell the user that you have to be logged in to create a setup...
+        // right now the request just won't work
+        submitData.user = pb.authStore.record?.id;
 
         submitPromise = pb.collection('setups').create(submitData);
     };

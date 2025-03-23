@@ -1,4 +1,5 @@
 <script>
+    import PocketBase from 'pocketbase';
     import ThemeToggle from "$lib/components/ThemeToggle.svelte";
     import GitHub from "$lib/components/Icons/GitHub.svelte";
     import {onMount} from "svelte";
@@ -22,7 +23,25 @@
         }
     }
 
+    const pb = new PocketBase("https://pb.cacaoglass.duckdns.org");
+    let isLoggedIn = $state(null);
+
+    const githubLogin = async (event) => {
+        isLoggedIn = null;
+        pb.collection("users").authWithOAuth2({provider: "github"}).then(() => {
+            isLoggedIn = true;
+        }).catch(() => {
+            isLoggedIn = false;
+        });
+    };
+
+    const logout = () =>  {
+        pb.authStore.clear();
+        isLoggedIn = false;
+    }
+
     onMount(() => {
+        isLoggedIn = pb.authStore.isValid;
         typeWriter();
     })
 </script>
@@ -39,6 +58,19 @@
         {/if}
     </div>
     <div class="flex mr-5 gap-5">
+        {#if isLoggedIn === true}
+            <button class="avatar" onclick={logout}>
+              <div class="w-10 rounded-xl">
+                <img alt="user-avatar" src={pb.files.getURL(pb.authStore.record, pb.authStore.record.avatar)} />
+              </div>
+            </button>
+        {:else if isLoggedIn === false}
+            <button class="btn btn-primary" onclick={githubLogin}>
+                Login with Github
+            </button>
+        {:else}
+            <span class="loading loading-spinner loading-md"></span>
+        {/if}
         <a href={githubRef} target="_blank">
             <GitHub/>
         </a>
