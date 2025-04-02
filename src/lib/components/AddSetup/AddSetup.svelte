@@ -5,15 +5,27 @@
     import AddModal3 from "$lib/components/AddSetup/AddModal/AddModal3.svelte";
     import AddModal4 from "$lib/components/AddSetup/AddModal/AddModal4.svelte";
     import Summary from "$lib/components/AddSetup/Summary.svelte";
+    import LogIn from "$lib/components/AddSetup/LogIn.svelte";
+
+    let logIn = $state(false)
+
+    const checkForAuthentication = () => {
+        if (logIn){
+            document.getElementById('AddModal1').showModal()
+        } else {
+            document.getElementById('LogIn').showModal()
+        }
+    }
 </script>
 
 <div class="mx-auto inset-x-0 max-w-max fixed bottom-10">
     <button class="btn bg-primary/70 w-20 h-12 rounded-4xl border-white"
-            onclick={()=>document.getElementById('AddModal1').showModal()}>
+            onclick={checkForAuthentication}>
         <Plus/>
     </button>
 </div>
 
+<LogIn/>
 <AddModal1/>
 <AddModal2/>
 <AddModal3/>

@@ -3,7 +3,7 @@
     import GitHub from "$lib/components/Icons/GitHub.svelte";
     import {onMount} from "svelte";
 
-    let githubRef = "https://github.com/FlorianBreuker/hardwatt.git";
+    let githubRef = "https://github.com/hardwatt-org/";
     let title = "hardwatt";
     let shownTitle = $state("");
     let typewriterSleep = 1000;
