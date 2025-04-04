@@ -5,7 +5,7 @@
     import AddModal3 from "$lib/components/AddSetup/AddModal/AddModal3.svelte";
     import AddModal4 from "$lib/components/AddSetup/AddModal/AddModal4.svelte";
     import Summary from "$lib/components/AddSetup/Summary.svelte";
-    import LogIn from "$lib/components/AddSetup/LogIn.svelte";
+    import LogInModal from "$lib/components/LogInModal.svelte";
 
     let logIn = $state(true)
 
@@ -25,7 +25,7 @@
     </button>
 </div>
 
-<LogIn/>
+<LogInModal/>
 <AddModal1/>
 <AddModal2/>
 <AddModal3/>

@@ -38,7 +38,7 @@
 </script>
 
 <dialog id="{modalId}" class="modal">
-    <div class="modal-box xl:w-10/12 md:11/12 w-10/12 max-w-6xl bg-base-300 flex items-center justify-center py-20 rounded-2xl">
+    <div class="modal-box xl:h-1/3 xl:w-10/12 md:11/12 w-10/12 max-w-6xl bg-base-300 flex items-center justify-center py-20 rounded-2xl">
         <div class="absolute top-5 left-5 md:text-lg font-black">{infoText}</div>
         <form onsubmit={nextModal}>
             <div class="grid {gridLayout} gap-6">

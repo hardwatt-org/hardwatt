@@ -1,7 +1,8 @@
 <script>
-    import ThemeToggle from "$lib/components/ThemeToggle.svelte";
+    import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
     import GitHub from "$lib/components/Icons/GitHub.svelte";
     import {onMount} from "svelte";
+    import Login from "$lib/components/Icons/Login.svelte";
 
     let githubRef = "https://github.com/hardwatt-org/";
     let title = "hardwatt";
@@ -40,8 +41,12 @@
     </div>
     <div class="flex mr-5 gap-5">
         <a href={githubRef} target="_blank">
-            <GitHub/>
+            <GitHub h="h-10" w="w-10"/>
         </a>
         <ThemeToggle/>
+        <button class="btn bg-primary text-white border-black">
+            <Login/>
+            Login
+        </button>
     </div>
 </div>

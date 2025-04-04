@@ -4,7 +4,7 @@
     let {bindId} = $props();
 </script>
 
-<label class="select">
+<!--<label class="select">
     <p class="p-0 text-nowrap rounded-none">{input[bindId].label}</p>
     <div class="divider divider-horizontal m-0 z-1"></div>
     <select class="select grow" required bind:value={input[bindId].value}>
@@ -12,4 +12,20 @@
             <option>{option}</option>
         {/each}
     </select>
+</label>-->
+
+<label class="select validator">
+    <span class="label mr-0">{input[bindId].label}</span>
+    <select required bind:value={input[bindId].value}>
+        {#each input[bindId].options as option}
+            <option>{option}</option>
+        {/each}
+    </select>
 </label>
+
+<style>
+    .label {
+        margin-inline-end: 0;
+    }
+</style>
+

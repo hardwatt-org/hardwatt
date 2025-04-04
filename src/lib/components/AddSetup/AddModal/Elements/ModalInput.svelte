@@ -5,12 +5,18 @@
     let field = input[bindId];
 </script>
 
-<div class="tooltip" data-tip={field.tooltip}>
-    <label class="input input-bordered flex items-center">
-        {field.label}
-        <div class="divider divider-horizontal m-0 p-0 z-0"></div>
+<div>
+    <label class="input validator input-bordered flex items-center">
+        <span class="label">{field.label}</span>
         <input type={field.type} min={field.min} step={field.steps} required class="grow"
                placeholder={field.placeholder}
                bind:value={field.value} list={bindId}/>
     </label>
+    <div class="validator-hint">{field.tooltip}</div>
 </div>
+
+<style>
+    .label {
+        margin-inline-end: 0;
+    }
+</style>
