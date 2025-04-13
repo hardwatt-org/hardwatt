@@ -13,7 +13,7 @@
 </script>
 
 <label class="flex flex-col gap-2">
-    <label class="{componentVisibility ? 'xl:absolute 2xl:top-25 xl:top-21':''}
+    <label class="{componentVisibility ? 'xl:absolute xl:top-19':''}
                             flex cursor-pointer gap-2 items-center">
         <span>{toggleLabelL}</span>
         <input type="checkbox" bind:checked={componentVisibility} class="toggle"/>

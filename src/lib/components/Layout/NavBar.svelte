@@ -1,10 +1,10 @@
 <script>
-    import PocketBase from 'pocketbase';
-    import ThemeToggle from "$lib/components/ThemeToggle.svelte";
+    import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
     import GitHub from "$lib/components/Icons/GitHub.svelte";
     import {onMount} from "svelte";
+    import Login from "$lib/components/Icons/Login.svelte";
 
-    let githubRef = "https://github.com/FlorianBreuker/hardwatt.git";
+    let githubRef = "https://github.com/hardwatt-org/";
     let title = "hardwatt";
     let shownTitle = $state("");
     let typewriterSleep = 1000;
@@ -72,8 +72,12 @@
             <span class="loading loading-spinner loading-md"></span>
         {/if}
         <a href={githubRef} target="_blank">
-            <GitHub/>
+            <GitHub h="h-10" w="w-10"/>
         </a>
         <ThemeToggle/>
+        <button class="btn bg-primary text-white border-black">
+            <Login/>
+            Login
+        </button>
     </div>
 </div>
