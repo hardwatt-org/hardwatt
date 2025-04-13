@@ -1,9 +1,7 @@
 <script>
-    import PocketBase from 'pocketbase';
+    import {pb} from "$lib/api/pocketbase";
     import {onMount} from 'svelte';
     import {input, parts} from '$lib/components/AddSetup/state.svelte.js';
-
-    const pb = new PocketBase('https://pb.cacaoglass.duckdns.org');
 
     let {bindId} = $props();
     let field = input[bindId];

@@ -1,5 +1,5 @@
 <script>
-    import PocketBase from 'pocketbase';
+    import {pb} from "$lib/api/pocketbase";
     import Close from "$lib/components/Icons/Close.svelte";
     import SummaryBlock from "$lib/components/AddSetup/SummaryBlock.svelte";
 
@@ -12,7 +12,6 @@
 
     const submitSetup = (event) => {
         event.preventDefault();
-        const pb = new PocketBase('https://pb.cacaoglass.duckdns.org');
 
         // extract part key + its value into separate object
         let submitData = {};

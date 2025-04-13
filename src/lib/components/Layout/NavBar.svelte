@@ -1,4 +1,5 @@
 <script>
+    import {pb} from "$lib/api/pocketbase";
     import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
     import GitHub from "$lib/components/Icons/GitHub.svelte";
     import {onMount} from "svelte";
@@ -23,7 +24,6 @@
         }
     }
 
-    const pb = new PocketBase("https://pb.cacaoglass.duckdns.org");
     let isLoggedIn = $state(null);
 
     const githubLogin = async (event) => {
