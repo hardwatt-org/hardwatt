@@ -26,7 +26,6 @@
     }
 
     let loginPromise = $state(null);
-    $inspect(user.avatar);
     
     onMount(() => {
         typeWriter();
