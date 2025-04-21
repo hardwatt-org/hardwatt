@@ -1,5 +1,6 @@
 <script>
-    import {pb} from "$lib/api/pocketbase";
+    import {pb, loginWithGithub, logout} from "$lib/api/pocketbase";
+    import {user} from "$lib/api/user.svelte";
     import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
     import GitHub from "$lib/components/Icons/GitHub.svelte";
     import {onMount} from "svelte";
@@ -24,24 +25,10 @@
         }
     }
 
-    let isLoggedIn = $state(null);
-
-    const githubLogin = async (event) => {
-        isLoggedIn = null;
-        pb.collection("users").authWithOAuth2({provider: "github"}).then(() => {
-            isLoggedIn = true;
-        }).catch(() => {
-            isLoggedIn = false;
-        });
-    };
-
-    const logout = () =>  {
-        pb.authStore.clear();
-        isLoggedIn = false;
-    }
-
+    let loginPromise = $state(null);
+    $inspect(user.avatar);
+    
     onMount(() => {
-        isLoggedIn = pb.authStore.isValid;
         typeWriter();
     })
 </script>
@@ -58,26 +45,27 @@
         {/if}
     </div>
     <div class="flex mr-5 gap-5">
-        {#if isLoggedIn === true}
-            <button class="avatar" onclick={logout}>
-              <div class="w-10 rounded-xl">
-                <img alt="user-avatar" src={pb.files.getURL(pb.authStore.record, pb.authStore.record.avatar, {"thumb": "100x100"})} />
-              </div>
-            </button>
-        {:else if isLoggedIn === false}
-            <button class="btn btn-primary" onclick={githubLogin}>
-                Login with Github
-            </button>
-        {:else}
-            <span class="loading loading-spinner loading-md"></span>
-        {/if}
         <a href={githubRef} target="_blank">
             <GitHub h="h-10" w="w-10"/>
         </a>
         <ThemeToggle/>
-        <button class="btn bg-primary text-white border-black">
-            <Login/>
-            Login
-        </button>
+        {#if user.loggedIn}
+            <button class="avatar" onclick={logout}>
+              <div class="w-10 rounded-xl">
+                {#if user.avatar}
+                    <img alt="user-avatar" src={user.avatar} />
+                {/if}
+              </div>
+            </button>
+        {:else}
+            {#await loginPromise}
+                <span class="loading loading-spinner loading-md"></span>
+            {:then}
+                <button class="btn bg-primary text-white border-black" onclick={() => {loginPromise = loginWithGithub()}} >
+                    <Login/>
+                    Login
+                </button>
+            {/await}
+        {/if}
     </div>
 </div>
