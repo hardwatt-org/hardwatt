@@ -1,5 +1,5 @@
 <script>
-    import {pb, loginWithGithub, logout} from "$lib/api/pocketbase";
+    import {loginWithGithub, logout} from "$lib/api/pocketbase";
     import {user} from "$lib/api/user.svelte";
     import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
     import GitHub from "$lib/components/Icons/GitHub.svelte";
