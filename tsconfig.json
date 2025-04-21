@@ -3,5 +3,6 @@
     "target": "es2022",
     "verbatimModuleSyntax": true,
     "isolatedModules": true
-  }
+  },
+  "extends": "./.svelte-kit/tsconfig.json"
 }
