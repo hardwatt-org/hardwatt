@@ -6,7 +6,8 @@ export function load({}) {
 
     return {
         setups: pb.collection('setups').getFullList<SetupRecord>({
-            sort: "-status,idle"
+            sort: "-status,idle",
+            requestKey: null
         })
     };
 }
