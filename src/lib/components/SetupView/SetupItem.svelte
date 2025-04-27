@@ -32,7 +32,7 @@
         <div class="hidden xl:block">{psu}</div>
         <div class="hidden 2xl:block">{os}</div>
         {#if setup.status == "pending"}
-            <div class="badge badge-sm badge-soft badge-primary absolute right-0 mr-2">awaiting Approval</div>
+            <div class="badge badge-sm badge-soft badge-primary absolute right-0 mr-2">awaiting approval</div>
         {/if}
     </div>
     <div class="collapse-content grid grid-cols-subgrid col-span-8 p-0 text-xs">
