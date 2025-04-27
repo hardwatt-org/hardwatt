@@ -5,6 +5,8 @@ export function load({}) {
     refreshUserState();
 
     return {
-        setups: pb.collection('setups').getFullList<SetupRecord>()
+        setups: pb.collection('setups').getFullList<SetupRecord>({
+            sort: "-status,idle"
+        })
     };
 }
