@@ -1,5 +1,5 @@
 <script>
-    import {pb} from "$lib/api/pocketbase";
+    import {pb} from "$lib/api";
     import Close from "$lib/components/Icons/Close.svelte";
     import SummaryBlock from "$lib/components/AddSetup/SummaryBlock.svelte";
 

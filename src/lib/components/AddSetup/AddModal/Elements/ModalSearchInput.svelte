@@ -1,5 +1,5 @@
 <script>
-    import {pb} from "$lib/api/pocketbase";
+    import {pb} from "$lib/api";
     import {onMount} from 'svelte';
     import {input, parts} from '$lib/components/AddSetup/state.svelte.js';
 

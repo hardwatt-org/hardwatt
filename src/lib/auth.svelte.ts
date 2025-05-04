@@ -1,20 +1,21 @@
-import PocketBase from "pocketbase";
-import { user } from "$lib/api/user.svelte"
+import { pb } from "$lib/api"
 
-export const pb = new PocketBase("https://pb.cacao.glass/");
 
-// it would be sooo nice to have a enum like
-// enum LogInState {
-//   LoggedOut,
-//   LoggedIn(Userinfo)
-// }
-//
-// struct Userinfo {
-//   avatar: String,
-//   username: String,
-// }
-//
-// then you would only get the users info, when logged in, and ahhh
+class LoginModal {
+  show = $state(false);
+}
+export const loginModal = new LoginModal();
+
+export const showLoginModal = () => {
+  loginModal.show = true;
+}
+
+
+class User {
+  loggedIn = $state(false);
+  avatar: string | null = $state(null);
+}
+export const user = new User();
 
 export const loginWithGithub = async () => {
   await pb.collection("users").authWithOAuth2({ provider: "github" }).then(() => {
@@ -38,5 +39,4 @@ export const refreshUserState = () => {
     user.loggedIn = false;
     user.avatar = null;
   }
-
 }

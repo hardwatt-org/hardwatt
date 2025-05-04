@@ -1,6 +1,6 @@
 <script>
-    import {loginWithGithub, logout} from "$lib/api/pocketbase";
-    import {user} from "$lib/api/user.svelte";
+    import { showLoginModal, logout } from "$lib/auth.svelte";
+    import { user } from "$lib/auth.svelte";
     import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
     import GitHub from "$lib/components/Icons/GitHub.svelte";
     import {onMount} from "svelte";
@@ -60,7 +60,7 @@
             {#await loginPromise}
                 <span class="loading loading-spinner loading-md"></span>
             {:then}
-                <button class="btn bg-primary text-white border-black" onclick={() => {loginPromise = loginWithGithub()}} >
+                <button class="btn bg-primary text-white border-black" onclick={showLoginModal} >
                     <Login/>
                     Login
                 </button>

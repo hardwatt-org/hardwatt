@@ -1,5 +1,5 @@
 <script>
-    import {user} from "$lib/api/user.svelte";
+    import { user } from "$lib/auth.svelte";
     import Plus from "$lib/components/Icons/Plus.svelte";
     import AddModal1 from "$lib/components/AddSetup/AddModal/AddModal1.svelte";
     import AddModal2 from "$lib/components/AddSetup/AddModal/AddModal2.svelte";
