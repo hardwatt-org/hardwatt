@@ -25,8 +25,6 @@
         }
     }
 
-    let loginPromise = $state(null);
-    
     onMount(() => {
         typeWriter();
     })
@@ -57,14 +55,10 @@
               </div>
             </button>
         {:else}
-            {#await loginPromise}
-                <span class="loading loading-spinner loading-md"></span>
-            {:then}
-                <button class="btn bg-primary text-white border-black" onclick={showLoginModal} >
-                    <Login/>
-                    Login
-                </button>
-            {/await}
+            <button class="btn bg-primary text-white border-black" onclick={showLoginModal} >
+                <Login/>
+                Login
+            </button>
         {/if}
     </div>
 </div>

@@ -11,6 +11,8 @@
     $effect(() => {
         if (loginModal.show) {
             modal.showModal();
+        } else {
+            modal.close();
         }
     });
 </script>
