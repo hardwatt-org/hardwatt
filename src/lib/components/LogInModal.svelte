@@ -6,6 +6,12 @@
     const heading = "Want to contribute your setup?"
     const infoText = "Log in to share your system with the community."
 
+    const State = Object.freeze({
+        None: 0,
+        Loading: 1,
+        Error: 2,
+    })
+
     let modal: HTMLDialogElement;
 
     $effect(() => {
@@ -13,22 +19,22 @@
             modal.showModal();
         } else {
             // reset state when modal gets closed
-            loading = false;
+            state = State.None;
             modal.close();
         }
     });
 
-    let loading = $state(false);
+    let state: number = $state(State.None);
 
     const login = () => {
-        loading = true;
+        state = State.Loading;
         loginWithGithub().then(() => {
             loginModal.show = false;
             loginModal.onLogin();
-        }).finally(() => {
-            loading = false;
+        }).catch(() => {
+            state = State.Error;
         });
-    }
+    };
 </script>
 
 <dialog id="LogIn" class="modal" bind:this={modal} onclose={() => {loginModal.show = false}}>
@@ -36,14 +42,22 @@
         <div class="md:text-lg font-black">{heading}</div>
         <div class="mt-2">{infoText}</div>
         <div class="mt-5">
-            <button class="btn bg-black text-white border-black" class:skeleton={loading} onclick={login}>
+            <button class="btn bg-black text-white border-black" class:skeleton={state === State.Loading} onclick={login}>
                 <GitHub h="h-5" w="h-5"/>
                 Login with GitHub
             </button>
 
-            {#if loading}
+            {#if state === State.Loading}
                 <span class="loading loading-ring loading-xl"></span>
+            {:else if state === State.Error}
+                <div role="alert" class="mt-5 alert alert-error">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Something went wrong :c</span>
+                </div>
             {/if}
+
         </div>
         <div class="modal-action">
             <form method="dialog">
