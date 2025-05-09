@@ -12,7 +12,7 @@
         if (user.loggedIn) {
             document.getElementById('AddModal1').showModal();
         } else {
-            showLoginModal();
+            showLoginModal(() => {document.getElementById('AddModal1').showModal()});
         }
     }
 </script>

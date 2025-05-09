@@ -3,10 +3,12 @@ import { pb } from "$lib/api"
 
 class LoginModal {
   show = $state(false);
+  onLogin: () => void = () => {};
 }
 export const loginModal = new LoginModal();
 
-export const showLoginModal = () => {
+export const showLoginModal = (onLogin: () => void = () => {}) => {
+  loginModal.onLogin = onLogin;
   loginModal.show = true;
 }
 
