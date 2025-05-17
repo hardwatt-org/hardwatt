@@ -31,7 +31,8 @@
         loginWithGithub().then(() => {
             loginModal.show = false;
             loginModal.loginCb();
-        }).catch(() => {
+        }).catch((err) => {
+            console.error(err);
             state = State.Error;
         });
     };
