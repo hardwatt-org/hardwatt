@@ -3,13 +3,21 @@ import { pb } from "$lib/api"
 
 class LoginModal {
   show = $state(false);
-  onLogin: () => void = () => {};
+  loginCb: () => void = () => {};
 }
 export const loginModal = new LoginModal();
 
-export const showLoginModal = (onLogin: () => void = () => {}) => {
-  loginModal.onLogin = onLogin;
+/**
+ * Shows the login modal (like showLoginModal) but allows to specify a callback
+ * which gets run when the login succeeds
+ */
+export const showLoginModalCb = (cb: () => void) => {
+  loginModal.loginCb = cb;
   loginModal.show = true;
+}
+
+export const showLoginModal = () => {
+  showLoginModalCb(() => {});
 }
 
 
@@ -20,9 +28,10 @@ class User {
 export const user = new User();
 
 export const loginWithGithub = async () => {
-  await pb.collection("users").authWithOAuth2({ provider: "github" }).then(() => {
+  return pb.collection("users").authWithOAuth2({ provider: "github" }).then((authData) => {
     refreshUserState();
-  })
+    return authData;
+  });
 }
 
 export const logout = () => {

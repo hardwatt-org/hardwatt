@@ -30,7 +30,7 @@
         state = State.Loading;
         loginWithGithub().then(() => {
             loginModal.show = false;
-            loginModal.onLogin();
+            loginModal.loginCb();
         }).catch(() => {
             state = State.Error;
         });
