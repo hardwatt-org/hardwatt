@@ -18,7 +18,7 @@
         tabindex="0"
         role="button"
         class="
-            {index % 2 === 0 ? 'bg-base-300' : 'bg-base-200'}
+            {index % 2 === 0 ? 'bg-base-200' : 'bg-base-300'}
             collapse grid grid-cols-subgrid col-span-8 text-xs md:text-sm"
 >
     <div
