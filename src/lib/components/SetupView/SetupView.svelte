@@ -1,7 +1,6 @@
 <script>
     import SetupItem from "./SetupItem.svelte";
-    import {setups} from "$lib/components/state.svelte.js";
-
+    let { setups } = $props();
     let grid2xl = "2xl:grid-cols-[0.5fr_0.5fr_0.75fr_1.5fr_2fr_3fr_2.5fr]";
     let gridXl = "xl:grid-cols-[0.5fr_0.5fr_0.75fr_1.5fr_2fr_3fr]";
     let gridMd = "md:grid-cols-[0.4fr_0.4fr_0.6fr_1.5fr_1.5fr]"

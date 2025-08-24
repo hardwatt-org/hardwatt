@@ -1,4 +1,6 @@
 <script>
+    import { showLoginModal, logout } from "$lib/auth.svelte";
+    import { user } from "$lib/auth.svelte";
     import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
     import GitHub from "$lib/components/Icons/GitHub.svelte";
     import {onMount} from "svelte";
@@ -44,9 +46,19 @@
             <GitHub h="h-10" w="w-10"/>
         </a>
         <ThemeToggle/>
-        <button class="btn bg-primary text-white border-black">
-            <Login/>
-            Login
-        </button>
+        {#if user.loggedIn}
+            <button class="avatar" onclick={logout}>
+              <div class="w-10 rounded-xl">
+                {#if user.avatar}
+                    <img alt="user-avatar" src={user.avatar} />
+                {/if}
+              </div>
+            </button>
+        {:else}
+            <button class="btn bg-primary text-white border-black" onclick={showLoginModal} >
+                <Login/>
+                Login
+            </button>
+        {/if}
     </div>
 </div>
