@@ -1,4 +1,5 @@
 <script>
+    import { user, showLoginModalCb } from "$lib/auth.svelte";
     import Plus from "$lib/components/Icons/Plus.svelte";
     import AddModal1 from "$lib/components/AddSetup/AddModal/AddModal1.svelte";
     import AddModal2 from "$lib/components/AddSetup/AddModal/AddModal2.svelte";
@@ -7,13 +8,11 @@
     import Summary from "$lib/components/AddSetup/Summary.svelte";
     import LogInModal from "$lib/components/LogInModal.svelte";
 
-    let logIn = $state(false)
-
     const checkForAuthentication = () => {
-        if (logIn){
-            document.getElementById('AddModal1').showModal()
+        if (user.loggedIn) {
+            document.getElementById('AddModal1').showModal();
         } else {
-            document.getElementById('LogIn').showModal()
+            showLoginModalCb(() => {document.getElementById('AddModal1').showModal()});
         }
     }
 </script>

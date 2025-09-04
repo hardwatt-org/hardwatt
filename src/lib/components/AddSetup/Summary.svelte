@@ -1,8 +1,33 @@
 <script>
+    import {pb} from "$lib/api";
     import Close from "$lib/components/Icons/Close.svelte";
     import SummaryBlock from "$lib/components/AddSetup/SummaryBlock.svelte";
 
+    import {input} from "$lib/components/AddSetup/state.svelte";
+
     let infoText = "Setup Summary";
+
+    let formElement;
+    let submitPromise= $state(null);
+
+    const submitSetup = (event) => {
+        event.preventDefault();
+
+        // extract part key + its value into separate object
+        let submitData = {};
+        Object.entries(input).forEach(([k, v]) => {
+            submitData[k] = v.value;
+        });
+
+        // set additional stuff
+        submitData.status = "pending";
+
+        // TODO we should tell the user that you have to be logged in to create a setup...
+        // right now the request just won't work
+        submitData.user = pb.authStore.record?.id;
+
+        submitPromise = pb.collection('setups').create(submitData);
+    };
 </script>
 
 <dialog id="AddSummary" class="modal">
@@ -20,11 +45,24 @@
             </div>
         </div>
         <div class="modal-action">
-            <form method="dialog">
+            <form method="dialog" bind:this={formElement}>
                 <button class="absolute right-5 top-5">
                     <Close/>
                 </button>
-                <button class="btn btn-primary absolute right-5">Submit
+                <button class="btn btn-primary absolute right-5"
+                    onclick={submitSetup}
+                >
+                    {#if submitPromise === null}
+                        Submit
+                    {:else}
+                        {#await submitPromise}
+                            <span class="loading loading-spinner loading-md"></span>
+                        {:then res } 
+                            {formElement.submit()}
+                        {:catch err}
+                            :(
+                        {/await}
+                    {/if}
                 </button>
                 <button class="btn btn-primary absolute left-5"
                         onclick={()=>document.getElementById('AddModal4').showModal()}>Back

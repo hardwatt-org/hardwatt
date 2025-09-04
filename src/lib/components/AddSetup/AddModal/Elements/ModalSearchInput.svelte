@@ -1,12 +1,15 @@
 <script>
+    import {pb} from "$lib/api";
     import {onMount} from 'svelte';
     import {input, parts} from '$lib/components/AddSetup/state.svelte.js';
     import Plus from "$lib/components/Icons/Plus.svelte";
 
     let {bindId} = $props();
     let field = input[bindId];
+    let options = $state([]);
 
-    let filterOptions = $derived(parts[bindId].filter((part) => part.toLowerCase().includes(field.value.toLowerCase())));
+
+    let filterOptions = $derived(options.filter((part) => part.toLowerCase().includes(field.value.toLowerCase())));
     let showOptions = $state(false);
     let selectedOption = $state("");
 
@@ -29,6 +32,10 @@
     }
 
     onMount(() => {
+        pb.collection(bindId).getList().then(val => {
+            options = val.items[0].options;
+        });
+
         document.addEventListener('click', handleOutsideClick);
         return () => document.removeEventListener('click', handleOutsideClick);
     });
