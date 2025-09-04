@@ -7,7 +7,7 @@
     import Summary from "$lib/components/AddSetup/Summary.svelte";
     import LogInModal from "$lib/components/LogInModal.svelte";
 
-    let logIn = $state(true)
+    let logIn = $state(false)
 
     const checkForAuthentication = () => {
         if (logIn){
