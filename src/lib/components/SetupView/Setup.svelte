@@ -1,5 +1,7 @@
 <script>
     import CollapsedSetup from "./CollapsedSetup.svelte";
+    import { user } from "$lib/auth.svelte";
+    import { deleteSetup } from "$lib/api";
 
     let {
         idle,
@@ -31,6 +33,11 @@
         <div class="hidden md:block">{motherboard}</div>
         <div class="hidden xl:block">{psu}</div>
         <div class="hidden 2xl:block">{os}</div>
+        {#if user.loggedIn && setup.user == user.id}
+            <button onclick={deleteSetup(setup.id)}>
+                hehe
+            </button>
+        {/if}
         {#if setup.status === "pending"}
             <div class="badge badge-sm badge-soft badge-primary absolute right-0 mr-2">awaiting approval</div>
         {/if}
