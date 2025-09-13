@@ -4,6 +4,7 @@
     import SummaryBlock from "$lib/components/AddSetup/SummaryBlock.svelte";
 
     import {input} from "$lib/components/AddSetup/state.svelte";
+    import { invalidate } from "$app/navigation";
 
     let infoText = "Setup Summary";
 
@@ -26,7 +27,10 @@
         // right now the request just won't work
         submitData.user = pb.authStore.record?.id;
 
-        submitPromise = pb.collection('setups').create(submitData);
+        submitPromise = pb.collection('setups').create(submitData).then(() => {
+            // if succesfully added -> refresh setups
+            invalidate("app:setups");
+        });
     };
 </script>
 
