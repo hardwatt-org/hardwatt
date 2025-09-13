@@ -23,6 +23,7 @@ export const showLoginModal = () => {
 
 class User {
   loggedIn = $state(false);
+  id: string | null = $state(null);
   avatar: string | null = $state(null);
 }
 export const user = new User();
@@ -44,10 +45,12 @@ export const refreshUserState = () => {
   if (pb.authStore.isValid) {
     user.loggedIn = true;
 
+    user.id = pb.authStore.record.id;
     user.avatar = pb.files.getURL(pb.authStore.record, pb.authStore.record.avatar, { thumb: "100x100" }) || null;
 
   } else {
     user.loggedIn = false;
+    user.id = null;
     user.avatar = null;
   }
 }
