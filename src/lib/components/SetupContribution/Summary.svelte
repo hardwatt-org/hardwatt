@@ -1,22 +1,45 @@
-<script>
+<script lang="ts">
+    import {X} from '@lucide/svelte';
     import {pb} from "$lib/api";
-    import Close from "$lib/components/Icons/Close.svelte";
-    import SummaryBlock from "$lib/components/AddSetup/SummaryBlock.svelte";
+    import {FormValues} from "$lib/components/SetupContribution/form.svelte";
+    import SummaryBlock from "$lib/components/SetupContribution/SummaryBlock.svelte";
+    import type {SetupRecord} from "$lib/models/api.type";
 
-    import {input} from "$lib/components/AddSetup/state.svelte";
 
     let infoText = "Setup Summary";
-
-    let formElement;
-    let submitPromise= $state(null);
+    let formElement = $state();
+    let submitPromise = $state(null);
 
     const submitSetup = (event) => {
         event.preventDefault();
 
         // extract part key + its value into separate object
-        let submitData = {};
-        Object.entries(input).forEach(([k, v]) => {
-            submitData[k] = v.value;
+        let submitData: SetupRecord = {
+            bootDrive: "",
+            cState: "",
+            cpu: "",
+            cpuCooler: "",
+            created: undefined,
+            gpu: "",
+            id: "",
+            idle: 0,
+            keyboard: "",
+            load: 0,
+            measuringDevice: "",
+            monitor: "",
+            motherboard: "",
+            mouse: "",
+            os: "",
+            powerAdapter: "",
+            psu: "",
+            ram: "",
+            status: "",
+            updated: undefined,
+            user: ""
+        };
+
+        Object.entries(FormValues).forEach(([k, v]) => {
+            submitData[k] = v;
         });
 
         // set additional stuff
@@ -47,20 +70,24 @@
         <div class="modal-action">
             <form method="dialog" bind:this={formElement}>
                 <button class="absolute right-5 top-5">
-                    <Close/>
+                    <X/>
                 </button>
                 <button class="btn btn-primary absolute right-5"
-                    onclick={submitSetup}
+                        onclick={submitSetup}
                 >
                     {#if submitPromise === null}
                         Submit
                     {:else}
                         {#await submitPromise}
                             <span class="loading loading-spinner loading-md"></span>
-                        {:then res } 
-                            {formElement.submit()}
+                        {:then res }
+                            Thanks
                         {:catch err}
-                            :(
+                            <div class="toast">
+                                <div class="alert alert-info">
+                                    <span>New message arrived.</span>
+                                </div>
+                            </div>
                         {/await}
                     {/if}
                 </button>

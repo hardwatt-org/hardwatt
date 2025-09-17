@@ -1,5 +1,5 @@
 <script>
-    import SetupItem from "./SetupItem.svelte";
+    import Setup from "./Setup.svelte";
     let { setups } = $props();
     let grid2xl = "2xl:grid-cols-[0.5fr_0.5fr_0.75fr_1.5fr_2fr_3fr_2.5fr]";
     let gridXl = "xl:grid-cols-[0.5fr_0.5fr_0.75fr_1.5fr_2fr_3fr]";
@@ -23,7 +23,7 @@
     <div class="overflow-auto h-9/10">
         <div class="grid {grid} {gridXl} {grid2xl} {gridMd}">
             {#each setups as setup, index}
-                <SetupItem
+                <Setup
                         idle={setup.idle}
                         load={setup.load}
                         cState={setup.cState}

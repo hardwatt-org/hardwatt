@@ -1,13 +1,14 @@
-<script>
-    import ModalSearchInput from "$lib/components/AddSetup/AddModal/Elements/ModalSearchInput.svelte";
-    import {input} from "$lib/components/AddSetup/state.svelte.js";
+<script lang="ts">
+    import ModalSearchInput from "$lib/components/Modal/ModalSearchInput.svelte";
+    import {FormConfig, FormValues} from "$lib/components/SetupContribution/form.svelte";
 
     let componentVisibility = $state(false);
-    let {toggleLabelL, toggleLabelR, bindId} = $props();
+    let {bindId} = $props();
+    let field = FormConfig[bindId];
 
     $effect(() => {
         if (!componentVisibility) {
-            input[bindId].value = '';
+            FormValues[bindId] = '';
         }
     });
 </script>
@@ -15,9 +16,9 @@
 <label class="flex flex-col gap-2">
     <label class="{componentVisibility ? 'xl:absolute xl:top-19':''}
                             flex cursor-pointer gap-2 items-center">
-        <span>{toggleLabelL}</span>
+        <span>{field.toggleLabelL}</span>
         <input type="checkbox" bind:checked={componentVisibility} class="toggle"/>
-        <span>{toggleLabelR}</span>
+        <span>{field.toggleLabelR}</span>
     </label>
 
     {#if componentVisibility}

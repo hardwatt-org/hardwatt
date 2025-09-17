@@ -1,8 +1,8 @@
-<script>
-    import {input} from '$lib/components/AddSetup/state.svelte.js'
+<script lang="ts">
+    import {FormConfig, FormValues} from '$lib/components/SetupContribution/form.svelte';
 
     let {bindId} = $props();
-    let field = input[bindId];
+    let field = FormConfig[bindId];
 </script>
 
 <div>
@@ -10,7 +10,7 @@
         <span class="label">{field.label}</span>
         <input type={field.type} min={field.min} step={field.steps} required class="grow"
                placeholder={field.placeholder}
-               bind:value={field.value} list={bindId}/>
+               bind:value={FormValues[bindId]} list={bindId}/>
     </label>
     <div class="validator-hint">{field.tooltip}</div>
 </div>

@@ -30,3 +30,6 @@ export interface UserRecord {
   created: Date,
   updated: Date,
 }
+
+export default class type {
+}
