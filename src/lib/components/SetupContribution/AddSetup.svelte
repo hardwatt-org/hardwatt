@@ -5,8 +5,8 @@
     import AddModal2 from "$lib/components/SetupContribution/AddModal/AddModal2.svelte";
     import AddModal3 from "$lib/components/SetupContribution/AddModal/AddModal3.svelte";
     import AddModal4 from "$lib/components/SetupContribution/AddModal/AddModal4.svelte";
-    import Summary from "$lib/components/SetupContribution/Summary.svelte";
-    import LogInModal from "$lib/components/LogInModal.svelte";
+    import Summary from "$lib/components/SetupContribution/Summary/Summary.svelte";
+    import LogInModal from "$lib/components/SetupContribution/LogInModal.svelte";
 
     const checkForAuthentication = () => {
         const modal = document.getElementById('AddModal1');
@@ -34,9 +34,7 @@
 
 <LogInModal/>
 <AddModal1/>
-{#if user.loggedIn}
-    <AddModal2/>
-    <AddModal3/>
-    <AddModal4/>
-    <Summary/>
-{/if}
+<AddModal2/>
+<AddModal3/>
+<AddModal4/>
+<Summary/>

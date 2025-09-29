@@ -1,6 +1,7 @@
 <script>
     import Setup from "./Setup.svelte";
-    let { setups } = $props();
+
+    let {setups} = $props();
     let grid2xl = "2xl:grid-cols-[0.5fr_0.5fr_0.75fr_1.5fr_2fr_3fr_2.5fr]";
     let gridXl = "xl:grid-cols-[0.5fr_0.5fr_0.75fr_1.5fr_2fr_3fr]";
     let gridMd = "md:grid-cols-[0.4fr_0.4fr_0.6fr_1.5fr_1.5fr]"
@@ -24,15 +25,9 @@
         <div class="grid {grid} {gridXl} {grid2xl} {gridMd}">
             {#each setups as setup, index}
                 <Setup
-                        idle={setup.idle}
-                        load={setup.load}
-                        cState={setup.cState}
-                        cpu={setup.cpu}
-                        motherboard={setup.motherboard}
-                        psu={setup.psu}
-                        os={setup.os}
                         index={index}
-                        {setup}
+                        {...setup}
+                        setup={setup}
                 />
             {/each}
         </div>

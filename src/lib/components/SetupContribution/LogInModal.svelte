@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { loginModal, loginWithGithub } from "$lib/auth.svelte";
-    import {Github} from '@lucide/svelte';
+    import {loginModal, loginWithGithub} from "$lib/auth.svelte.js";
+    import {Github, X} from '@lucide/svelte';
 
     const heading = "Want to contribute your setup?"
     const infoText = "Log in to share your system with the community."
@@ -42,7 +42,8 @@
         <div class="md:text-lg font-black">{heading}</div>
         <div class="mt-2">{infoText}</div>
         <div class="mt-5">
-            <button class="btn bg-black text-white border-black" class:skeleton={state === State.Loading} onclick={login}>
+            <button class="btn bg-black text-white border-black" class:skeleton={state === State.Loading}
+                    onclick={login}>
                 <Github/>
                 Login with GitHub
             </button>
@@ -51,8 +52,10 @@
                 <span class="loading loading-ring loading-xl"></span>
             {:else if state === State.Error}
                 <div role="alert" class="mt-5 alert alert-error">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <span>Something went wrong :c</span>
                 </div>
@@ -62,7 +65,7 @@
         <div class="modal-action">
             <form method="dialog">
                 <button class="absolute right-5 top-5">
-                    <span class="material-icons-round">close</span>
+                    <X/>
                 </button>
             </form>
         </div>

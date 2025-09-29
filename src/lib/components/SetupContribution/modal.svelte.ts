@@ -99,7 +99,7 @@ export const FormConfig = {
     },
 };
 
-export const FormValues = $state<SetupSpecification>({
+let initialFormValues: SetupSpecification = {
     idle: null,
     load: null,
     measuringDevice: "",
@@ -117,4 +117,10 @@ export const FormValues = $state<SetupSpecification>({
     keyboard: "",
     monitor: "",
     user: "",
-});
+}
+
+export let FormValues = $state<SetupSpecification>({...initialFormValues});
+
+export const resetForm = () => {
+    Object.assign(FormValues, {...initialFormValues});
+}

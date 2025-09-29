@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {FormConfig, FormValues} from "$lib/components/SetupContribution/form.svelte";
+    import {FormConfig, FormValues} from "$lib/components/SetupContribution/modal.svelte.js";
 
     let {bindId} = $props();
 </script>

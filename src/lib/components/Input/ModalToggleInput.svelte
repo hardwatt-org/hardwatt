@@ -1,6 +1,6 @@
 <script lang="ts">
-    import ModalSearchInput from "$lib/components/Modal/ModalSearchInput.svelte";
-    import {FormConfig, FormValues} from "$lib/components/SetupContribution/form.svelte";
+    import ModalSearchInput from "$lib/components/Input/ModalSearchInput.svelte";
+    import {FormConfig, FormValues} from "$lib/components/SetupContribution/modal.svelte.js";
 
     let componentVisibility = $state(false);
     let {bindId} = $props();

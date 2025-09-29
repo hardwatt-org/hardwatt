@@ -1,10 +1,10 @@
 <script lang="ts">
     import {X} from '@lucide/svelte';
-    import {FormConfig} from "$lib/components/SetupContribution/form.svelte.js";
-    import ModalInput from "$lib/components/Modal/ModalInput.svelte";
-    import ModalSearchInput from "$lib/components/Modal/ModalSearchInput.svelte";
-    import ModalSelect from "$lib/components/Modal/ModalSelect.svelte";
-    import ModalToggleInput from "$lib/components/Modal/ModalToggleInput.svelte";
+    import {FormConfig} from "$lib/components/SetupContribution/modal.svelte.js";
+    import ModalInput from "$lib/components/Input/ModalInput.svelte";
+    import ModalSearchInput from "$lib/components/Input/ModalSearchInput.svelte";
+    import ModalSelect from "$lib/components/Input/ModalSelect.svelte";
+    import ModalToggleInput from "$lib/components/Input/ModalToggleInput.svelte";
 
     let {
         modalId,

@@ -1,14 +1,33 @@
 <script lang="ts">
     import {X} from '@lucide/svelte';
     import {pb} from "$lib/api";
-    import {FormValues} from "$lib/components/SetupContribution/form.svelte";
-    import SummaryBlock from "$lib/components/SetupContribution/SummaryBlock.svelte";
+    import {FormValues, resetForm} from "$lib/components/SetupContribution/modal.svelte";
+    import SummaryBlock from "$lib/components/SetupContribution/Summary/SummaryBlock.svelte";
     import type {SetupRecord} from "$lib/models/api.type";
 
 
     let infoText = "Setup Summary";
     let formElement = $state();
     let submitPromise = $state(null);
+    let modalId = "AddSummary";
+    let prevModalId = "AddModal4";
+
+    const closeModal = () => {
+        const modal = document.getElementById(modalId);
+        if (modal instanceof HTMLDialogElement) {
+            modal.close();
+        }
+    }
+
+    const backModal = () => {
+        const currentModal = document.getElementById(modalId);
+        const prevModal = document.getElementById(prevModalId);
+
+        if (currentModal instanceof HTMLDialogElement && prevModal instanceof HTMLDialogElement) {
+            currentModal.close();
+            prevModal.showModal();
+        }
+    }
 
     const submitSetup = (event) => {
         event.preventDefault();
@@ -42,6 +61,8 @@
             submitData[k] = v;
         });
 
+        resetForm();
+
         // set additional stuff
         submitData.status = "pending";
 
@@ -51,6 +72,10 @@
 
         submitPromise = pb.collection('setups').create(submitData);
     };
+
+    const logError = (err) => {
+        console.log(err)
+    }
 </script>
 
 <dialog id="AddSummary" class="modal">
@@ -69,7 +94,7 @@
         </div>
         <div class="modal-action">
             <form method="dialog" bind:this={formElement}>
-                <button class="absolute right-5 top-5">
+                <button class="absolute right-5 top-5" onclick={closeModal}>
                     <X/>
                 </button>
                 <button class="btn btn-primary absolute right-5"
@@ -83,16 +108,12 @@
                         {:then res }
                             Thanks
                         {:catch err}
-                            <div class="toast">
-                                <div class="alert alert-info">
-                                    <span>New message arrived.</span>
-                                </div>
-                            </div>
+                            {err.data}
                         {/await}
                     {/if}
                 </button>
                 <button class="btn btn-primary absolute left-5"
-                        onclick={()=>document.getElementById('AddModal4').showModal()}>Back
+                        onclick={backModal}>Back
                 </button>
             </form>
         </div>

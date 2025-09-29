@@ -1,6 +1,6 @@
 <script lang="ts">
-    import {showLoginModal, logout} from "$lib/auth.svelte";
-    import {user} from "$lib/auth.svelte";
+    import {showLoginModal, logout} from "$lib/auth.svelte.js";
+    import {user} from "$lib/auth.svelte.js";
     import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
     import {Github, LogIn} from '@lucide/svelte';
     import {onMount} from "svelte";

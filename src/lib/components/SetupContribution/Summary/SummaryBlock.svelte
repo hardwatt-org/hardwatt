@@ -1,5 +1,5 @@
 <script>
-    import {FormConfig, FormValues} from "$lib/components/SetupContribution/form.svelte.ts";
+    import {FormConfig, FormValues} from "$lib/components/SetupContribution/modal.svelte.ts";
 
     let {blockTitle, setupParts} = $props();
 </script>

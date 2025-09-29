@@ -20,9 +20,6 @@ importers:
       daisyui:
         specifier: ^5.1.12
         version: 5.1.12
-      material-icons:
-        specifier: ^1.13.14
-        version: 1.13.14
       pocketbase:
         specifier: ^0.25.2
         version: 0.25.2
@@ -665,9 +662,6 @@ packages:
   magic-string@0.30.19:
     resolution: {integrity: sha512-2N21sPY9Ws53PZvsEpVtNuSW+ScYbQdp4b9qUaL+9QkHUrGFKo56Lg9Emg5s9V/qrtNBmiR01sYhUOwu3H+VOw==}
 
-  material-icons@1.13.14:
-    resolution: {integrity: sha512-kZOfc7xCC0rAT8Q3DQixYAeT+tBqZnxkseQtp2bxBxz7q5pMAC+wmit7vJn1g/l7wRU+HEPq23gER4iPjGs5Cg==}
-
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -1268,8 +1262,6 @@ snapshots:
   magic-string@0.30.19:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
-
-  material-icons@1.13.14: {}
 
   minipass@7.1.2: {}
 

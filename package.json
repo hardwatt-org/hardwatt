@@ -21,7 +21,6 @@
 		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "^4.1.13",
 		"daisyui": "^5.1.12",
-		"material-icons": "^1.13.14",
 		"pocketbase": "^0.25.2",
 		"tailwindcss": "^4.1.13"
 	},

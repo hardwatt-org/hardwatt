@@ -1,8 +1,9 @@
 <script lang="ts">
     import {pb} from "$lib/api.js";
     import {onMount} from 'svelte';
-    import {FormConfig, FormValues} from '$lib/components/SetupContribution/form.svelte';
-    
+    import {FormConfig, FormValues} from '$lib/components/SetupContribution/modal.svelte.js';
+    import {Plus} from '@lucide/svelte';
+
     let {bindId} = $props();
     let field = FormConfig[bindId];
     let options = $state([]);
@@ -57,7 +58,7 @@
             <button type="button" class="w-full text-left p-2 hover:bg-base-300"
                     onclick={() => selectOption(FormValues[bindId])}>
                 <div class="flex items-center gap-2">
-                    <span class="material-icons-round">add</span>
+                    <Plus/>
                     Add component
                 </div>
 
