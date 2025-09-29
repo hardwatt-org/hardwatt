@@ -1,8 +1,8 @@
 <script>
     import "../app.css";
-    import NavBar from "$lib/components/Layout/NavBar.svelte"
+    import Navbar from "$lib/components/Navigation/Navbar.svelte"
     let { children } = $props();
 </script>
 
-{@render NavBar?.()}
+{@render Navbar?.()}
 {@render children?.()}

@@ -1,23 +1,67 @@
-<script>
+<script lang="ts">
+    import {X} from '@lucide/svelte';
     import {pb} from "$lib/api";
-    import Close from "$lib/components/Icons/Close.svelte";
-    import SummaryBlock from "$lib/components/AddSetup/SummaryBlock.svelte";
+    import {FormValues, resetForm} from "$lib/components/SetupContribution/modal.svelte";
+    import SummaryBlock from "$lib/components/SetupContribution/Summary/SummaryBlock.svelte";
+    import type {SetupRecord} from "$lib/models/api.type";
 
-    import {input} from "$lib/components/AddSetup/state.svelte";
 
     let infoText = "Setup Summary";
+    let formElement = $state();
+    let submitPromise = $state(null);
+    let modalId = "AddSummary";
+    let prevModalId = "AddModal4";
 
-    let formElement;
-    let submitPromise= $state(null);
+    const closeModal = () => {
+        const modal = document.getElementById(modalId);
+        if (modal instanceof HTMLDialogElement) {
+            modal.close();
+        }
+    }
+
+    const backModal = () => {
+        const currentModal = document.getElementById(modalId);
+        const prevModal = document.getElementById(prevModalId);
+
+        if (currentModal instanceof HTMLDialogElement && prevModal instanceof HTMLDialogElement) {
+            currentModal.close();
+            prevModal.showModal();
+        }
+    }
 
     const submitSetup = (event) => {
         event.preventDefault();
 
         // extract part key + its value into separate object
-        let submitData = {};
-        Object.entries(input).forEach(([k, v]) => {
-            submitData[k] = v.value;
+        let submitData: SetupRecord = {
+            bootDrive: "",
+            cState: "",
+            cpu: "",
+            cpuCooler: "",
+            created: undefined,
+            gpu: "",
+            id: "",
+            idle: 0,
+            keyboard: "",
+            load: 0,
+            measuringDevice: "",
+            monitor: "",
+            motherboard: "",
+            mouse: "",
+            os: "",
+            powerAdapter: "",
+            psu: "",
+            ram: "",
+            status: "",
+            updated: undefined,
+            user: ""
+        };
+
+        Object.entries(FormValues).forEach(([k, v]) => {
+            submitData[k] = v;
         });
+
+        resetForm();
 
         // set additional stuff
         submitData.status = "pending";
@@ -28,6 +72,10 @@
 
         submitPromise = pb.collection('setups').create(submitData);
     };
+
+    const logError = (err) => {
+        console.log(err)
+    }
 </script>
 
 <dialog id="AddSummary" class="modal">
@@ -46,26 +94,26 @@
         </div>
         <div class="modal-action">
             <form method="dialog" bind:this={formElement}>
-                <button class="absolute right-5 top-5">
-                    <Close/>
+                <button class="absolute right-5 top-5" onclick={closeModal}>
+                    <X/>
                 </button>
                 <button class="btn btn-primary absolute right-5"
-                    onclick={submitSetup}
+                        onclick={submitSetup}
                 >
                     {#if submitPromise === null}
                         Submit
                     {:else}
                         {#await submitPromise}
                             <span class="loading loading-spinner loading-md"></span>
-                        {:then res } 
-                            {formElement.submit()}
+                        {:then res }
+                            Thanks
                         {:catch err}
-                            :(
+                            {err.data}
                         {/await}
                     {/if}
                 </button>
                 <button class="btn btn-primary absolute left-5"
-                        onclick={()=>document.getElementById('AddModal4').showModal()}>Back
+                        onclick={backModal}>Back
                 </button>
             </form>
         </div>

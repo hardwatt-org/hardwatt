@@ -1,26 +1,27 @@
-<script>
-    import {pb} from "$lib/api";
+<script lang="ts">
+    import {pb} from "$lib/api.js";
     import {onMount} from 'svelte';
-    import {input, parts} from '$lib/components/AddSetup/state.svelte.js';
+    import {FormConfig, FormValues} from '$lib/components/SetupContribution/modal.svelte.js';
+    import {Plus} from '@lucide/svelte';
 
     let {bindId} = $props();
-    let field = input[bindId];
+    let field = FormConfig[bindId];
     let options = $state([]);
 
 
-    let filterOptions = $derived(options.filter((part) => part.toLowerCase().includes(field.value.toLowerCase())));
+    let filterOptions = $derived(options.filter((part) => part.toLowerCase().includes(FormValues[bindId].toLowerCase())));
     let showOptions = $state(false);
     let selectedOption = $state("");
 
     const selectOption = (part) => {
         selectedOption = part;
-        field.value = selectedOption;
+        FormValues[bindId] = selectedOption;
         showOptions = false;
     }
 
     const handleChange = () => {
-        if (field.value.length < 1) {
-            selectedOption = '';
+        if (FormValues[bindId].length < 1) {
+            selectedOption = "";
         }
     }
 
@@ -45,13 +46,24 @@
         <span class="label">{field.label}</span>
         <input type={field.type} min={field.min} step={field.steps} required class="grow"
                placeholder={field.placeholder}
-               bind:value={field.value} onchange={handleChange} onfocus={() => showOptions = true}/>
+               bind:value={FormValues[bindId]} oninput={() => handleChange()} onfocus={() => showOptions = true}/>
     </label>
     <ul class="bg-base-100 absolute top-10 max-h-30 border rounded-(--radius-field) overflow-auto z-2 py-2 {showOptions ? 'block' : 'hidden'}">
-        {#each filterOptions as part}
+        {#if filterOptions.length > 0}
+            {#each filterOptions as part}
+                <button type="button" class="w-full text-left p-2 hover:bg-base-300"
+                        onclick={() => selectOption(part)}>{part}</button>
+            {/each}
+        {:else}
             <button type="button" class="w-full text-left p-2 hover:bg-base-300"
-                    onclick={() => selectOption(part)}>{part}</button>
-        {/each}
+                    onclick={() => selectOption(FormValues[bindId])}>
+                <div class="flex items-center gap-2">
+                    <Plus/>
+                    Add component
+                </div>
+
+            </button>
+        {/if}
     </ul>
 </div>
 

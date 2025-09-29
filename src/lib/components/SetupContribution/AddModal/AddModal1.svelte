@@ -1,5 +1,5 @@
-<script>
-    import GenericModal from "$lib/components/AddSetup/AddModal/Elements/GenericModal.svelte";
+<script lang="ts">
+    import BaseAddModal from "$lib/components/SetupContribution/AddModal/BaseAddModal.svelte";
 
     let config = {
         modalId: 'AddModal1',
@@ -20,4 +20,4 @@
     }
 </script>
 
-<GenericModal {...config}/>
+<BaseAddModal {...config}/>

@@ -1,6 +1,5 @@
 <script>
-    import GenericModal from "$lib/components/AddSetup/AddModal/Elements/GenericModal.svelte";
-
+ import BaseAddModal from "$lib/components/SetupContribution/AddModal/BaseAddModal.svelte";
     let config = {
         modalId: 'AddModal4',
         nextModalId: 'AddSummary',
@@ -11,11 +10,11 @@
             {bindId: 'os'},
         ],
         toggleInputFields: [
-            {bindId: 'mouse', toggleLabelL: "Mouse"},
-            {bindId: 'keyboard', toggleLabelL: "Keyboard"},
-            {bindId: 'monitor', toggleLabelL: "Monitor"},
+            {bindId: 'mouse'},
+            {bindId: 'keyboard'},
+            {bindId: 'monitor'},
         ]
     }
 </script>
 
-<GenericModal {...config}/>
+<BaseAddModal {...config}/>

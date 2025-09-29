@@ -1,6 +1,6 @@
 <script>
     import SetupView from "$lib/components/SetupView/SetupView.svelte";
-    import AddSetup from "$lib/components/AddSetup/AddSetup.svelte";
+    import AddSetup from "$lib/components/SetupContribution/AddSetup.svelte";
     let { data } = $props();
 </script>
 

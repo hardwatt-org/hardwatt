@@ -1,13 +1,13 @@
-<script>
-    import { showLoginModal, logout } from "$lib/auth.svelte";
-    import { user } from "$lib/auth.svelte";
+<script lang="ts">
+    import {showLoginModal, logout} from "$lib/auth.svelte.js";
+    import {user} from "$lib/auth.svelte.js";
     import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
-    import GitHub from "$lib/components/Icons/GitHub.svelte";
+    import {Github, LogIn} from '@lucide/svelte';
     import {onMount} from "svelte";
-    import Login from "$lib/components/Icons/Login.svelte";
 
     let githubRef = "https://github.com/hardwatt-org/";
     let title = "hardwatt";
+
     let shownTitle = $state("");
     let typewriterSleep = 1000;
     let typewriterSpeed = 200;
@@ -41,22 +41,22 @@
             </div>
         {/if}
     </div>
-    <div class="flex mr-5 gap-5">
+    <div class="flex mr-5 gap-5 items-center">
         <a href={githubRef} target="_blank">
-            <GitHub h="h-10" w="w-10"/>
+            <Github/>
         </a>
         <ThemeToggle/>
         {#if user.loggedIn}
             <button class="avatar" onclick={logout}>
-              <div class="w-10 rounded-xl">
-                {#if user.avatar}
-                    <img alt="user-avatar" src={user.avatar} />
-                {/if}
-              </div>
+                <div class="w-10 rounded-xl">
+                    {#if user.avatar}
+                        <img alt="user-avatar" src={user.avatar}/>
+                    {/if}
+                </div>
             </button>
         {:else}
-            <button class="btn bg-primary text-white border-black" onclick={showLoginModal} >
-                <Login/>
+            <button class="btn btn-ghost" onclick={showLoginModal}>
+                <LogIn/>
                 Login
             </button>
         {/if}

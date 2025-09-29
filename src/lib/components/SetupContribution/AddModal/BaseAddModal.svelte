@@ -1,11 +1,10 @@
-<script>
-    import ToggleInput from "$lib/components/AddSetup/AddModal/Elements/ToggleInput.svelte";
-    import Close from "$lib/components/Icons/Close.svelte";
-    import ModalInput from "$lib/components/AddSetup/AddModal/Elements/ModalInput.svelte";
-    import ModalSelect from "$lib/components/AddSetup/AddModal/Elements/ModalSelect.svelte";
-
-    import {input} from "$lib/components/AddSetup/state.svelte.js";
-    import ModalSearchInput from "./ModalSearchInput.svelte";
+<script lang="ts">
+    import {X} from '@lucide/svelte';
+    import {FormConfig} from "$lib/components/SetupContribution/modal.svelte.js";
+    import ModalInput from "$lib/components/Input/ModalInput.svelte";
+    import ModalSearchInput from "$lib/components/Input/ModalSearchInput.svelte";
+    import ModalSelect from "$lib/components/Input/ModalSelect.svelte";
+    import ModalToggleInput from "$lib/components/Input/ModalToggleInput.svelte";
 
     let {
         modalId,
@@ -19,21 +18,33 @@
     } = $props()
 
     const closeModal = () => {
-        document.getElementById(modalId).close();
+        const modal = document.getElementById(modalId);
+        if (modal instanceof HTMLDialogElement) {
+            modal.close();
+        }
     }
 
     const nextModal = (event) => {
         event.preventDefault();
+        const currentModal = document.getElementById(modalId);
+        const nextModal = document.getElementById(nextModalId);
 
         if (event.target.checkValidity()) {
-            document.getElementById(modalId).close();
-            document.getElementById(nextModalId).showModal();
+            if (currentModal instanceof HTMLDialogElement && nextModal instanceof HTMLDialogElement) {
+                currentModal.close();
+                nextModal.showModal();
+            }
         }
     }
 
     const backModal = () => {
-        document.getElementById(modalId).close();
-        document.getElementById(prevModalId).showModal();
+        const currentModal = document.getElementById(modalId);
+        const prevModal = document.getElementById(prevModalId);
+
+        if (currentModal instanceof HTMLDialogElement && prevModal instanceof HTMLDialogElement) {
+            currentModal.close();
+            prevModal.showModal();
+        }
     }
 </script>
 
@@ -43,7 +54,7 @@
         <form onsubmit={nextModal}>
             <div class="grid {gridLayout} gap-6">
                 {#each inputFields as field}
-                    {#if input[field.bindId].type === "number"}
+                    {#if FormConfig[field.bindId].type === "number"}
                         <ModalInput bindId={field.bindId}/>
                     {:else}
                         <ModalSearchInput bindId={field.bindId}/>
@@ -55,14 +66,14 @@
                 {/each}
 
                 {#each toggleInputFields as field}
-                    <ToggleInput toggleLabelL={field.toggleLabelL} toggleLabelR={field.toggleLabelR}
-                                 bindId={field.bindId}/>
+                    <ModalToggleInput bindId={field.bindId}/>
                 {/each}
             </div>
             <div class="modal-action">
                 <button type="button" class="absolute right-5 top-5" onclick={closeModal}>
-                    <Close/>
+                    <X/>
                 </button>
+                <!--first modal has itself as prevModal so this will only show for the rest-->
                 {#if prevModalId !== modalId}
                     <button type="button" class="btn btn-primary absolute left-5 bottom-5"
                             onclick={backModal}>Back
