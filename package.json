@@ -28,5 +28,4 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
-	}
 }
