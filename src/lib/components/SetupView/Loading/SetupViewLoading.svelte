@@ -2,6 +2,9 @@
     import SetupLoading from "$lib/components/SetupView/Loading/SetupLoading.svelte";
 </script>
 
-<div class="h-120 xl:h-150">
-    <SetupLoading/>
+<div class="grid grid-cols-subgrid col-span-8">
+    {#each {length: 9} as _, index}
+        <SetupLoading {index}/>
+    {/each}
+
 </div>

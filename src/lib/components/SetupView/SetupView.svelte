@@ -36,7 +36,9 @@
     </div>
 
     {#await data.setups}
-        <SetupViewLoading/>
+        <div class="grid {grid} {gridMd} {gridXl} {grid2xl}">
+            <SetupViewLoading/>
+        </div>
     {:then setups}
         <div class="overflow-auto h-8/10">
             <div class="grid {grid} {gridMd} {gridXl} {grid2xl} ">
