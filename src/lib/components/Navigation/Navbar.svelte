@@ -2,7 +2,7 @@
     import {showLoginModal, logout} from "$lib/auth.svelte.js";
     import {user} from "$lib/auth.svelte.js";
     import ThemeToggle from "$lib/components/Layout/ThemeToggle.svelte";
-    import {Github, LogIn} from '@lucide/svelte';
+    import {Github, LogIn, LogOut} from '@lucide/svelte';
     import {onMount} from "svelte";
 
     let githubRef = "https://github.com/hardwatt-org/";
@@ -47,16 +47,27 @@
         </a>
         <ThemeToggle/>
         {#if user.loggedIn}
-            <button class="avatar" onclick={logout}>
-                <div class="w-10 rounded-xl">
-                    {#if user.avatar}
-                        <img alt="user-avatar" src={user.avatar}/>
-                    {/if}
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        {#if user.avatar}
+                            <img alt="user-avatar" src={user.avatar}/>
+                        {/if}
+                    </div>
                 </div>
-            </button>
+                <ul
+                        class="menu menu-sm dropdown-content bg-base-300 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    <li>
+                        <button onclick={logout}>
+                            <LogOut size="15"/>
+                            Logout
+                        </button>
+                    </li>
+                </ul>
+            </div>
         {:else}
-            <button class="btn btn-ghost" onclick={showLoginModal}>
-                <LogIn/>
+            <button class="btn btn-ghost border-none" onclick={showLoginModal}>
+                <LogIn size="18"/>
                 Login
             </button>
         {/if}

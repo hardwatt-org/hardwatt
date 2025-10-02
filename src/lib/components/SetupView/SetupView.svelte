@@ -18,7 +18,7 @@
 <div class="2xl:w-11/12 md:w-7/8 max-h-155 xl:max-h-180 w-full bg-base-300 p-5 rounded-2xl shadow-2xl inset-shadow-md text-md font-black">
     <div class="flex justify-between items-center ml-2 text-lg">
         <div>Low Power Systems</div>
-        <button class="btn btn-ghost btn-circle mb-0" onclick={reloadSetupView}>
+        <button class="btn btn-ghost btn-circle mb-0 border-none" onclick={reloadSetupView}>
             <RefreshCw size="20"/>
         </button>
     </div>
