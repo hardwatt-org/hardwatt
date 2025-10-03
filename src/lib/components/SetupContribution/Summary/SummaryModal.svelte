@@ -7,7 +7,7 @@
     import {invalidate} from "$app/navigation";
 
 
-    let infoText = "Setup Summary";
+    let infoText = "Setup SummaryModal";
     let formElement = $state();
     let submitPromise = $state(null);
     let modalId = "AddSummary";

@@ -1,12 +1,18 @@
 <script lang="ts">
     import {pb} from "$lib/api.js";
     import {onMount} from 'svelte';
-    import {FormConfig, FormValues} from '$lib/components/SetupContribution/modal.svelte.js';
+    import {FormInputFields, FormValues} from '$lib/components/SetupContribution/modal.svelte.js';
     import {Plus} from '@lucide/svelte';
 
     let {bindId} = $props();
-    let field = FormConfig[bindId];
+    let field = $derived(FormInputFields[bindId]);
     let options = $state([]);
+
+    $effect(() => {
+        pb.collection(bindId).getList().then(val => {
+            options = val.items[0].options;
+        });
+    });
 
 
     let filterOptions = $derived(options.filter((part) => part.toLowerCase().includes(FormValues[bindId].toLowerCase())));
@@ -32,10 +38,6 @@
     }
 
     onMount(() => {
-        pb.collection(bindId).getList().then(val => {
-            options = val.items[0].options;
-        });
-
         document.addEventListener('click', handleOutsideClick);
         return () => document.removeEventListener('click', handleOutsideClick);
     });

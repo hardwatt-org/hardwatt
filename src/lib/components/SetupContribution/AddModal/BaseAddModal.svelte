@@ -1,6 +1,6 @@
 <script lang="ts">
     import {X} from '@lucide/svelte';
-    import {FormConfig} from "$lib/components/SetupContribution/modal.svelte.js";
+    import {FormInputFields} from "$lib/components/SetupContribution/modal.svelte.js";
     import ModalInput from "$lib/components/Input/ModalInput.svelte";
     import ModalSearchInput from "$lib/components/Input/ModalSearchInput.svelte";
     import ModalSelect from "$lib/components/Input/ModalSelect.svelte";
@@ -14,7 +14,7 @@
         gridLayout,
         inputFields,
         selectFields,
-        toggleInputFields,
+        toggleInputFields
     } = $props()
 
     const closeModal = () => {
@@ -54,7 +54,7 @@
         <form onsubmit={nextModal}>
             <div class="grid {gridLayout} gap-6">
                 {#each inputFields as field}
-                    {#if FormConfig[field.bindId].type === "number"}
+                    {#if FormInputFields[field.bindId].type === "number"}
                         <ModalInput bindId={field.bindId}/>
                     {:else}
                         <ModalSearchInput bindId={field.bindId}/>
