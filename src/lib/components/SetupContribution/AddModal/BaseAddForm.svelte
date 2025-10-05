@@ -9,7 +9,7 @@
 
 </script>
 
-<div class="min-h-5"></div>
+<div class="min-h-10"></div>
 <div class="w-full grid {step.gridLayout} gap-6">
     {#each step.inputFields as field}
         {#if FormInputFields[field.bindId].type === "number"}
