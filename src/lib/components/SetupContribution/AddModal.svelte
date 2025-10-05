@@ -14,11 +14,14 @@
     let showSummary = $state<boolean>(false);
     let submitPromise = $state(null);
 
+    $inspect(currentStep, showSummary);
+
     const closeModal = () => {
         if (modal) {
             modal.close();
             resetForm();
             currentStep = 0;
+            showSummary = false;
         }
     }
 
@@ -39,6 +42,7 @@
 
     const stepBack = () => {
         currentStep--;
+        showSummary = false;
     }
 
     const submitSetup = (event) => {
@@ -91,15 +95,20 @@
 </script>
 
 <dialog id={modalId} class="modal" bind:this={modal}>
-    <div class="modal-box xl:w-10/12 md:11/12 w-10/12 max-w-6xl bg-base-300 flex items-center justify-center py-20 rounded-2xl">
-        <div class="absolute top-5 left-5 md:text-lg font-black">
+    <div class="modal-box xl:w-10/12 md:11/12 w-10/12 max-w-6xl bg-base-300 flex flex-col items-center justify-center rounded-2xl">
+        <div class="grid justify-center w-full md:text-lg font-black">
             {#if showSummary}
                 Summary
             {:else}
-                {FormConfig[currentStep].infoText}
+                <ul class="steps">
+                    {#each FormConfig as step, index}
+                        <li class="step {currentStep >= index ? 'step-primary' : ''}"></li>
+                    {/each}
+                </ul>
+                <div class="mt-2 text-center">{FormConfig[currentStep].infoText}</div>
             {/if}
         </div>
-        <form onsubmit={formSubmit}>
+        <form class="w-full" onsubmit={formSubmit}>
             {#if showSummary}
                 <SummaryComponent/>
             {:else}
@@ -112,11 +121,11 @@
                     <X/>
                 </button>
                 {#if currentStep > 0}
-                    <button type="button" class="btn btn-primary absolute left-5 bottom-5"
+                    <button type="button" class="btn btn-primary"
                             onclick={stepBack}>Back
                     </button>
                 {/if}
-                <button class="btn btn-primary absolute right-5 bottom-5">
+                <button class="btn btn-primary">
                     {#if showSummary}
                         Submit
                     {:else}

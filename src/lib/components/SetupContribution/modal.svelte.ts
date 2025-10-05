@@ -2,7 +2,7 @@ import type {SetupSpecification} from "$lib/models/input.type.js";
 
 export const FormConfig = [
     {
-        infoText: '1/4: Power Consumption',
+        infoText: 'Power Consumption',
         gridLayout: 'md:grid-cols-[0.8fr_0.8fr_1fr_0.5fr]',
         inputFields: [
             {bindId: 'idle'},
@@ -16,7 +16,7 @@ export const FormConfig = [
         ]
     },
     {
-        infoText: '2/4: Processors',
+        infoText: 'Processors',
         gridLayout: 'md:grid-cols-4',
         inputFields: [
             {bindId: 'motherboard'},
@@ -28,7 +28,7 @@ export const FormConfig = [
         ]
     },
     {
-        infoText: '3/4: Storage & PSU',
+        infoText: 'Storage & PSU',
         gridLayout: 'md:grid-cols-4',
         inputFields: [
             {bindId: 'ram'},
@@ -40,7 +40,7 @@ export const FormConfig = [
         ]
     },
     {
-        infoText: '4/4: OS & Peripherals',
+        infoText: 'OS & Peripherals',
         gridLayout: 'md:grid-cols-4',
         inputFields: [
             {bindId: 'os'},
