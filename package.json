@@ -21,6 +21,7 @@
 		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "^4.1.13",
 		"daisyui": "^5.1.12",
+		"lucide-svelte": "^0.544.0",
 		"pocketbase": "^0.25.2",
 		"tailwindcss": "^4.1.13"
 	},

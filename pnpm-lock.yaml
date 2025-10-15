@@ -20,6 +20,9 @@ importers:
       daisyui:
         specifier: ^5.1.12
         version: 5.1.12
+      lucide-svelte:
+        specifier: ^0.544.0
+        version: 0.544.0(svelte@5.38.10)
       pocketbase:
         specifier: ^0.25.2
         version: 0.25.2
@@ -334,7 +337,6 @@ packages:
 
   '@rollup/rollup-win32-x64-msvc@4.50.2':
     resolution: {integrity: sha512-APwKy6YUhvZaEoHyM+9xqmTpviEI+9eL7LoCH+aLcvWYHJ663qG5zx7WzWZY+a9qkg5JtzcMyJ9z0WtQBMDmgA==}
-
     cpu: [x64]
     os: [win32]
 
@@ -533,6 +535,7 @@ packages:
 
   detect-libc@2.1.0:
     resolution: {integrity: sha512-vEtk+OcP7VBRtQZ1EJ3bdgzSfBjgnEalLTp5zjJrS+2Z1w2KZly4SBdac/WDU3hhsNAZ9E8SC96ME4Ey8MZ7cg==}
+    engines: {node: '>=8'}
 
   devalue@5.3.2:
     resolution: {integrity: sha512-UDsjUbpQn9kvm68slnrs+mfxwFkIflOhkanmyabZ8zOYk8SMEIbJ3TK+88g70hSIeytu4y18f0z/hYHMTrXIWw==}
@@ -658,6 +661,11 @@ packages:
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+
+  lucide-svelte@0.544.0:
+    resolution: {integrity: sha512-8kBxSivf8SJdEUJRHBpu9bRw0S/qfVK+Yfb92KQnRRBdP425RzT6aQfrIfZctG1oucPVTBQe1ZXgmth/3qVICg==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
 
   magic-string@0.30.19:
     resolution: {integrity: sha512-2N21sPY9Ws53PZvsEpVtNuSW+ScYbQdp4b9qUaL+9QkHUrGFKo56Lg9Emg5s9V/qrtNBmiR01sYhUOwu3H+VOw==}
@@ -907,6 +915,7 @@ snapshots:
   '@jridgewell/resolve-uri@3.1.2': {}
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
+
   '@jridgewell/trace-mapping@0.3.31':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
@@ -980,7 +989,7 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.50.2':
     optional: true
-    
+
   '@standard-schema/spec@1.0.0': {}
 
   '@sveltejs/acorn-typescript@1.0.5(acorn@8.15.0)':
@@ -1257,6 +1266,10 @@ snapshots:
   lodash.isplainobject@4.0.6: {}
 
   lodash.merge@4.6.2: {}
+
+  lucide-svelte@0.544.0(svelte@5.38.10):
+    dependencies:
+      svelte: 5.38.10
 
   magic-string@0.30.19:
     dependencies:
