@@ -1,4 +1,3 @@
-import { invalidate } from "$app/navigation";
 import { pb } from "$lib/api"
 
 
@@ -31,10 +30,6 @@ export const user = new User();
 export const loginWithGithub = async () => {
   return pb.collection("users").authWithOAuth2({ provider: "github" }).then((authData) => {
     refreshUserState();
-
-    // when logged in, reload setups to also show users pending additions
-    invalidate("app:setups");
-
     return authData;
   });
 }
@@ -42,9 +37,6 @@ export const loginWithGithub = async () => {
 export const logout = () => {
   pb.authStore.clear();
   refreshUserState();
-
-  // same as in `loginWithGithub`
-  invalidate("app:setups");
 }
 
 export const refreshUserState = () => {

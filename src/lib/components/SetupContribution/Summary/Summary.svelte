@@ -4,7 +4,6 @@
     import {FormValues, resetForm} from "$lib/components/SetupContribution/modal.svelte";
     import SummaryBlock from "$lib/components/SetupContribution/Summary/SummaryBlock.svelte";
     import type {SetupRecord} from "$lib/models/api.type";
-    import {invalidate} from "$app/navigation";
 
 
     let infoText = "Setup Summary";
@@ -71,10 +70,7 @@
         // right now the request just won't work
         submitData.user = pb.authStore.record?.id;
 
-        submitPromise = pb.collection('setups').create(submitData).then(() => {
-            // if successfully added -> refresh setups
-            invalidate("app:setups");
-        });
+        submitPromise = pb.collection('setups').create(submitData);
     };
 
     const logError = (err) => {
