@@ -1,6 +1,59 @@
 import type {SetupSpecification} from "$lib/models/input.type.js";
 
-export const FormConfig = {
+export const FormConfig = [
+    {
+        infoText: 'Power Consumption',
+        gridLayout: 'md:grid-cols-[0.8fr_0.8fr_1fr_0.5fr]',
+        inputFields: [
+            {bindId: 'idle'},
+            {bindId: 'load'},
+            {bindId: 'measuringDevice'},
+        ],
+        selectFields: [
+            {
+                bindId: 'cState',
+            },
+        ]
+    },
+    {
+        infoText: 'Processors',
+        gridLayout: 'md:grid-cols-4',
+        inputFields: [
+            {bindId: 'motherboard'},
+            {bindId: 'cpu'},
+            {bindId: 'cpuCooler'},
+        ],
+        toggleInputFields: [
+            {bindId: 'gpu'}
+        ]
+    },
+    {
+        infoText: 'Storage & PSU',
+        gridLayout: 'md:grid-cols-4',
+        inputFields: [
+            {bindId: 'ram'},
+            {bindId: 'bootDrive'},
+            {bindId: 'psu'},
+        ],
+        toggleInputFields: [
+            {bindId: 'powerAdapter'},
+        ]
+    },
+    {
+        infoText: 'OS & Peripherals',
+        gridLayout: 'md:grid-cols-4',
+        inputFields: [
+            {bindId: 'os'},
+        ],
+        toggleInputFields: [
+            {bindId: 'mouse'},
+            {bindId: 'keyboard'},
+            {bindId: 'monitor'},
+        ]
+    }
+]
+
+export const FormInputFields = {
     idle: {
         label: "Idle Power",
         type: 'number',

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import {FormConfig, FormValues} from '$lib/components/SetupContribution/modal.svelte.js';
+    import {FormInputFields, FormValues} from '$lib/components/SetupContribution/modal.svelte.js';
 
     let {bindId} = $props();
-    let field = FormConfig[bindId];
+    let field = $derived(FormInputFields[bindId]);
 </script>
 
 <div>
@@ -12,7 +12,9 @@
                placeholder={field.placeholder}
                bind:value={FormValues[bindId]} list={bindId}/>
     </label>
+<!--
     <div class="validator-hint">{field.tooltip}</div>
+-->
 </div>
 
 <style>

@@ -32,7 +32,9 @@
         <div class="hidden xl:block">{psu}</div>
         <div class="hidden 2xl:block">{os}</div>
         {#if setup.status === "pending"}
-            <div aria-label="warning" class="status status-warning absolute right-0 mr-5"></div>
+            <div class="tooltip tooltip-left" data-tip="setup is in preview">
+                <div aria-label="warning" class="status status-warning relative right-0 mr-5"></div>
+            </div>
         {/if}
     </div>
     <div class="collapse-content grid grid-cols-subgrid col-span-8 p-0 text-xs">
