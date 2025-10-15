@@ -73,9 +73,8 @@
                 <button type="button" class="absolute right-5 top-5" onclick={closeModal}>
                     <X/>
                 </button>
-                <!--first modal has itself as prevModal so this will only show for the rest-->
                 {#if prevModalId !== modalId}
-                    <button type="button" class="btn btn-primary absolute left-5 bottom-5"
+                    <button type="button" class="btn btn-primary absolute right-24 bottom-5"
                             onclick={backModal}>Back
                     </button>
                 {/if}
