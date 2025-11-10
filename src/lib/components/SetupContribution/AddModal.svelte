@@ -11,17 +11,15 @@
     let modal = $state<HTMLDialogElement>();
     let currentStep = $state<number>(0);
 
-    let showSummary = $state<boolean>(false);
     let submitPromise = $state(null);
 
-    $inspect(currentStep, showSummary);
+    $inspect(currentStep);
 
     const closeModal = () => {
         if (modal) {
             modal.close();
             resetForm();
             currentStep = 0;
-            showSummary = false;
         }
     }
 
@@ -30,10 +28,7 @@
         if (event.target.checkValidity()) {
             if (currentStep < FormConfig.length - 1) {
                 currentStep++;
-                showSummary = false;
-            } else if (!showSummary) {
-                showSummary = true;
-            } else if (showSummary) {
+            } else if (FormConfig[currentStep].summary) {
                 submitSetup(event);
                 closeModal();
             }
@@ -97,19 +92,21 @@
 <dialog id={modalId} class="modal" bind:this={modal}>
     <div class="modal-box xl:w-10/12 md:11/12 w-10/12 max-w-6xl bg-base-300 flex flex-col items-center justify-center rounded-2xl">
         <div class="grid justify-center w-full md:text-lg font-black">
-            {#if showSummary}
+            {#if FormConfig[currentStep].summary}
                 Summary
             {:else}
                 <ul class="steps">
                     {#each FormConfig as step, index}
-                        <li class="step {currentStep >= index ? 'step-primary' : ''}"></li>
+                        {#if !step.summary} <!--Treat summary speacial... maybe also show summary step in the progress bar, but not as a number TODO-->
+                            <li class="step {currentStep >= index ? 'step-primary' : ''}"></li>
+                        {/if}
                     {/each}
                 </ul>
                 <div class="mt-2 text-center">{FormConfig[currentStep].infoText}</div>
             {/if}
         </div>
         <form class="w-full" onsubmit={formSubmit}>
-            {#if showSummary}
+            {#if FormConfig[currentStep].summary}
                 <SummaryComponent/>
             {:else}
                 {#key currentStep}
@@ -126,7 +123,7 @@
                     </button>
                 {/if}
                 <button class="btn btn-primary">
-                    {#if showSummary}
+                    {#if FormConfig[currentStep].summary}
                         Submit
                     {:else}
                         Next
