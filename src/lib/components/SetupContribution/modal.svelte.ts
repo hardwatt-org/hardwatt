@@ -50,6 +50,10 @@ export const FormConfig = [
             {bindId: 'keyboard'},
             {bindId: 'monitor'},
         ]
+    },
+    {
+        // infoText: 'Summary', // currently not needed, as there is a special header case for that in AddModal.svelte
+        summary: true
     }
 ]
 
